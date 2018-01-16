@@ -1,0 +1,19 @@
+import collections
+
+def balanced_parens(s):
+    if len(s) == 0:
+        return True
+    stack = collections.deque()
+    matches = {')': '(',
+               ']': '[',
+               '}': '{'}
+    for k in s:
+        if k in ']})' and len(stack) == 0:
+            return False
+        elif k in '[{(':
+            stack.append(k)
+        else:
+            v = stack.pop()
+            if matches[k] != v:
+                return False
+    return True
